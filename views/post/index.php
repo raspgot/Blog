@@ -7,8 +7,19 @@
     $pdo = new PDO('mysql:dbname=blog;host=127.0.0.1', 'root', '', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
+    
+    $page = $_GET['page'] ?? 1;
 
-    $currentPage = (int)($_GET['page'] ?? 1);
+    if (!filter_var($page, FILTER_VALIDATE_INT)) {
+        throw new Exception('Numéro de page invalide');
+    }
+    
+    if ($page === '1') {
+        header('Location: ' . $router->url('home'));
+        http_response_code(301);
+        exit;
+    }
+    $currentPage = (int)$page;
     if ($currentPage <= 0) {
         throw new Exception('Numéro de page invalide');
     }
@@ -37,7 +48,11 @@
 
 <div class="d-flex justify-content-between my-4">
     <?php if ($currentPage > 1): ?>
-        <a href="<?= $router->url('home') ?>?page=<?= $currentPage - 1 ?>" class="btn btn-primary">&#8592; Page précédente</a>
+        <?php
+            $link = $router->url('home');
+            if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1);
+        ?>
+        <a href="<?= $link ?>" class="btn btn-primary">&#8592; Page précédente</a>
     <?php endif ?>
     <?php if ($currentPage < $pages): ?>
         <a href="<?= $router->url('home') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante &#8594;</a>
