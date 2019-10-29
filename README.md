@@ -13,6 +13,8 @@ Clone the project
 
 ```
 git clone https://github.com/raspgot/Blog.git
+cd Blog
+composer install
 ```
 
 Create Database `blog` and import **blog.sql** file into
