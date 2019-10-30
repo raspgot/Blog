@@ -22,6 +22,8 @@
         header('Location: ' . $url);
     }
     
+    $title = $post->getName();
+
     $query = $pdo->prepare('
     SELECT c.id, c.slug, c.name 
     FROM post_category pc 
@@ -33,7 +35,7 @@
     $categories = $query->fetchAll();
 ?>
 
-<h1 class=card-title><?= e($post->getName()) ?></h1>
+<h1 class=card-title><?= e($title) ?></h1>
 <p class='text-muted'><?= $post->getCreated_at()->format('d F Y') ?></p>
 <?php foreach ($categories as $k => $category):
     if($k > 0): 
