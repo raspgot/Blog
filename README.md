@@ -19,7 +19,7 @@ composer install
 
 Create Database `blog` and import **blog.sql** file into
 
-Launch the server with PHP commande:
+Launch the server with PHP command:
 
 ```
 php -S localhost:8000 -t public
