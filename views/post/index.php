@@ -1,5 +1,4 @@
 <?php
-    use App\Helpers\Text;
     use App\Model\Post;
     use App\Connexion;
     use App\URL;
