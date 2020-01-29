@@ -31,11 +31,10 @@
             JOIN post_category pc ON pc.post_id = p.id 
             WHERE pc.category_id = {$category->getID()}
             ORDER BY created_at DESC",
-        "SELECT COUNT(category_id) FROM post_category WHERE category_id = {$category->getID()}",
-        Post::class
+        "SELECT COUNT(category_id) FROM post_category WHERE category_id = {$category->getID()}"
     );
     /** @var Post[] */
-    $posts = $paginatedQuery->getItems();
+    $posts = $paginatedQuery->getItems(Post::class);
 
     $link = $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()])
 ?>

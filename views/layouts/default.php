@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $title ?? 'Mon site'?></title>
+    <title><?= isset($title) ? e($title) : 'Mon site' ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column h-100">
